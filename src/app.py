@@ -63,3 +63,12 @@ def tomorrow_plan() -> str:
         fortune_result=fortune_result,
         fortune_advice=Markup(fortune_advice.replace("\n", "<br>")),
     )
+
+
+@application.route("/password", methods=["GET", "POST"])
+def password() -> str:
+    if request.method == "POST":
+        output_data = request.form.get("input_data")
+    else:
+        output_data = "これから決めます"
+    return render_template("./password.html", my_name=output_data)
